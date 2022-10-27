@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class Form extends Component {
@@ -136,19 +136,19 @@ class Form extends Component {
   }
 }
 
-// Form.propTypes = {
-//   cardAttr1: PropTypes.string.isRequired,
-//   cardAttr2: PropTypes.string.isRequired,
-//   cardAttr3: PropTypes.string.isRequired,
-//   cardDescription: PropTypes.string.isRequire,
-//   cardImage: PropTypes.string.isRequire,
-//   cardName: PropTypes.string.isRequire,
-//   cardRare: PropTypes.string.isRequire,
-//   cartTrunfo: PropTypes.bool.isRequired,
-//   hasTrunfo: PropTypes.bool.isRequired,
-//   isSaveButtonDisable: PropTypes.bool.isRequired,
-//   onInputChange: PropTypes.func.isRequired,
-//   onSaveButtonClick: PropTypes.func.isRequired,
-// };
+Form.propTypes = {
+  cardAttr1: PropTypes.string.isRequired,
+  cardAttr2: PropTypes.string.isRequired,
+  cardAttr3: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+  cardImage: PropTypes.string.isRequired,
+  cardName: PropTypes.string.isRequired,
+  cardRare: PropTypes.string.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
+  isSaveButtonDisabled: PropTypes.bool.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSaveButtonClick: PropTypes.func.isRequired,
+};
 
 export default Form;

@@ -46,8 +46,10 @@ class App extends React.Component {
   };
 
   onInputChange = (event) => {
+    const value = (event.target.type === 'checkbox')
+      ? event.target.checked : event.target.value;
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: value,
     }, () => {
       this.isSaveButtonDisabled();
     });
