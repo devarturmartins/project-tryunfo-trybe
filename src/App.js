@@ -19,6 +19,7 @@ class App extends React.Component {
     isDisabled: true,
     saveListCard: [],
     hasTrunfo: false,
+    btnExcluir: false,
   };
 
   isSaveButtonDisabled = () => {
@@ -68,6 +69,7 @@ class App extends React.Component {
       cardImage,
       cardTrunfo,
       saveListCard,
+      btnExcluir,
     } = this.state;
     const newObj = {
       cardName,
@@ -78,6 +80,7 @@ class App extends React.Component {
       cardAttr3,
       cardImage,
       cardTrunfo,
+      btnExcluir,
     };
     if (cardTrunfo) {
       this.setState({
@@ -85,6 +88,11 @@ class App extends React.Component {
       });
     }
     saveListCard.push(newObj);
+    if (saveListCard.length > 0) {
+      this.setState({
+        btnExcluir: true,
+      });
+    }
     this.setState({
       cardName: '',
       cardDescription: '',
@@ -94,6 +102,12 @@ class App extends React.Component {
       cardAttr3: '0',
       cardRare: 'normal',
     });
+  };
+
+  deleteButton = (event) => {
+    const { saveListCard } = this.state;
+    const nameCardButton = event.target.name;
+    console.log(event.target);
   };
 
   renderNewCard = () => {
@@ -108,6 +122,7 @@ class App extends React.Component {
         cardImage,
         cardRare,
         cardTrunfo,
+        btnExcluir,
       } = e;
       return (<Card
         key={ cardName }
@@ -119,6 +134,8 @@ class App extends React.Component {
         cardImage={ cardImage }
         cardRare={ cardRare }
         cardTrunfo={ cardTrunfo }
+        btnExcluir={ btnExcluir }
+        deleteButton={ this.deleteButton }
       />);
     });
   };
@@ -134,6 +151,7 @@ class App extends React.Component {
       cardTrunfo,
       isDisabled,
       hasTrunfo,
+      btnExcluir,
     } = this.state;
     return (
       <>
@@ -162,6 +180,8 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
+          btnExcluir={ btnExcluir }
+          deleteButton={ this.deleteButton }
         />
         {this.renderNewCard()}
       </>
