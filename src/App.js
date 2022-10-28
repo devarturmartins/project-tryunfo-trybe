@@ -96,6 +96,33 @@ class App extends React.Component {
     });
   };
 
+  renderNewCard = () => {
+    const { saveListCard } = this.state;
+    return saveListCard.map((e) => {
+      const {
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardDescription,
+        cardName,
+        cardImage,
+        cardRare,
+        cardTrunfo,
+      } = e;
+      return (<Card
+        key={ cardName }
+        cardName={ cardName }
+        cardDescription={ cardDescription }
+        cardAttr1={ cardAttr1 }
+        cardAttr2={ cardAttr2 }
+        cardAttr3={ cardAttr3 }
+        cardImage={ cardImage }
+        cardRare={ cardRare }
+        cardTrunfo={ cardTrunfo }
+      />);
+    });
+  };
+
   render() {
     const { cardName,
       cardDescription,
@@ -136,6 +163,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
         />
+        {this.renderNewCard()}
       </>
     );
   }
