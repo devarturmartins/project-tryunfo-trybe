@@ -19,7 +19,6 @@ class App extends React.Component {
     isDisabled: true,
     saveListCard: [],
     hasTrunfo: false,
-    btnExcluir: false,
   };
 
   isSaveButtonDisabled = () => {
@@ -69,7 +68,6 @@ class App extends React.Component {
       cardImage,
       cardTrunfo,
       saveListCard,
-      btnExcluir,
     } = this.state;
     const newObj = {
       cardName,
@@ -80,7 +78,6 @@ class App extends React.Component {
       cardAttr3,
       cardImage,
       cardTrunfo,
-      btnExcluir,
     };
     if (cardTrunfo) {
       this.setState({
@@ -88,11 +85,7 @@ class App extends React.Component {
       });
     }
     saveListCard.push(newObj);
-    if (saveListCard.length > 0) {
-      this.setState({
-        btnExcluir: true,
-      });
-    }
+
     this.setState({
       cardName: '',
       cardDescription: '',
@@ -104,10 +97,13 @@ class App extends React.Component {
     });
   };
 
-  deleteButton = (event) => {
+  deleteButton = (cardName) => {
     const { saveListCard } = this.state;
-    const nameCardButton = event.target.name;
-    console.log(event.target);
+    const deck = saveListCard.filter((e) => e.cardName !== cardName);
+    this.setState({
+      saveListCard: deck,
+    });
+    // console.log(event.target);
   };
 
   renderNewCard = () => {
@@ -122,21 +118,28 @@ class App extends React.Component {
         cardImage,
         cardRare,
         cardTrunfo,
-        btnExcluir,
       } = e;
-      return (<Card
-        key={ cardName }
-        cardName={ cardName }
-        cardDescription={ cardDescription }
-        cardAttr1={ cardAttr1 }
-        cardAttr2={ cardAttr2 }
-        cardAttr3={ cardAttr3 }
-        cardImage={ cardImage }
-        cardRare={ cardRare }
-        cardTrunfo={ cardTrunfo }
-        btnExcluir={ btnExcluir }
-        deleteButton={ this.deleteButton }
-      />);
+      return (
+        <div key={ cardName }>
+          <Card
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
+          <button
+            onClick={ () => this.deleteButton(cardName) }
+            data-testid="delete-button"
+            type="button"
+          >
+            Excluir
+          </button>
+        </div>
+      );
     });
   };
 
@@ -151,7 +154,6 @@ class App extends React.Component {
       cardTrunfo,
       isDisabled,
       hasTrunfo,
-      btnExcluir,
     } = this.state;
     return (
       <>
@@ -180,7 +182,6 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
-          btnExcluir={ btnExcluir }
           deleteButton={ this.deleteButton }
         />
         {this.renderNewCard()}
