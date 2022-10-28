@@ -18,6 +18,7 @@ class App extends React.Component {
     cardTrunfo: false,
     isDisabled: true,
     saveListCard: [],
+    hasTrunfo: false,
   };
 
   isSaveButtonDisabled = () => {
@@ -78,6 +79,11 @@ class App extends React.Component {
       cardImage,
       cardTrunfo,
     };
+    if (cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
     saveListCard.push(newObj);
     this.setState({
       cardName: '',
@@ -100,6 +106,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isDisabled,
+      hasTrunfo,
     } = this.state;
     return (
       <>
@@ -116,6 +123,7 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           isSaveButtonDisabled={ isDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }
+          hasTrunfo={ hasTrunfo }
         />
         <Card
           cardName={ cardName }
@@ -126,6 +134,7 @@ class App extends React.Component {
           cardAttr3={ cardAttr3 }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
         />
       </>
     );
