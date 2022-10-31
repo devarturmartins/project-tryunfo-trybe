@@ -100,8 +100,10 @@ class App extends React.Component {
   deleteButton = (cardName) => {
     const { saveListCard } = this.state;
     const deck = saveListCard.filter((e) => e.cardName !== cardName);
+
     this.setState({
       saveListCard: deck,
+      hasTrunfo: false,
     });
     // console.log(event.target);
   };
